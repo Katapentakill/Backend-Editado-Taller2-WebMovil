@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using project_dotnet7_api.Src.Data;
+using project_dotnet7_api.Src.DTO.User;
 using project_dotnet7_api.Src.Models;
 using project_dotnet7_api.Src.Repositories.Interfaces;
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using project_dotnet7_api.Src.Data;
+using project_dotnet7_api.Src.DTO.Product;
 using project_dotnet7_api.Src.Models;
 using project_dotnet7_api.Src.Repositories.Interfaces;
 
@@ -86,8 +87,8 @@ namespace project_dotnet7_api.Src.Repositories.Implements
             existingProduct.Name = product.Name ?? existingProduct.Name;
             existingProduct.Price = product.Price ?? existingProduct.Price;
             existingProduct.Stock = product.Stock ?? existingProduct.Stock;
-            existingProduct.ImgUrl = product.Img_Url ?? existingProduct.ImgUrl;
-            existingProduct.ImgId = product.Img_Id ?? existingProduct.ImgId;
+            existingProduct.ImgUrl = product.ImgUrl ?? existingProduct.ImgUrl;
+            existingProduct.ImgId = product.ImgId ?? existingProduct.ImgId;
             existingProduct.ProductTypeId = product.ProductTypeId ?? existingProduct.ProductTypeId;
 
             _context.Entry(existingProduct).State = EntityState.Modified;
