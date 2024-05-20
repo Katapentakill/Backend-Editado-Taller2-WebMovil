@@ -19,7 +19,7 @@ git clone https://github.com/IDWM/project-dotnet7-api
 dotnet restore
 ```
 ****
-## ClOUDINARY:
+## CLOUDINARY:
 El proyecto hace uso de los servicios de Cloudinary, por lo que es necesario registrarse en la [página de Cloudinary](https://cloudinary.com/) para obtener las credenciales del servicio.
 Las credenciales necesarias para el proyecto son Cloud name, API key y API Secret.
 Una vez obtenidas estas credenciales, se deben escribir en el archivo "appsettings.json" de la siguiente forma:
