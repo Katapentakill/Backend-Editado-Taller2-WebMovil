@@ -17,7 +17,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
-builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlite("Data Source=Ayudantia.db"));
+builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlite("Data Source=TallerIDWM.db"));
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 
 // Interface Implements
