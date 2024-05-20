@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using project_dotnet7_api.Src.DTO.User;
 using project_dotnet7_api.Src.Services.Interfaces;

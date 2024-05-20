@@ -3,10 +3,11 @@ using project_dotnet7_api.Src.DTO.Product;
 using project_dotnet7_api.Src.DTO.Purchase;
 using project_dotnet7_api.Src.DTO.User;
 using project_dotnet7_api.Src.Models;
+using project_dotnet7_api.Src.Services.Interfaces;
 
 namespace project_dotnet7_api.Src.Services.Implements
 {
-    public class MapperService
+    public class MapperService : IMapperService
     {
         private readonly IMapper _mapper;
 
