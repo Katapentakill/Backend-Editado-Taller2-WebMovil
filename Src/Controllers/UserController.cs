@@ -18,6 +18,12 @@ namespace project_dotnet7_api.Src.Controllers
             _purchaseService = purchaseService;
         }
 
+
+        /// <summary>
+        /// Retrieves all users.
+        /// </summary>
+        /// <returns>A list of all users.</returns>
+        /// <response code="200">Returns a list of all users.</response>
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult<IEnumerable<UserDto>> GetUsers()
@@ -26,6 +32,12 @@ namespace project_dotnet7_api.Src.Controllers
             return Ok(valor);
         }
 
+        /// <summary>
+        /// Searches for users based on a query string.
+        /// </summary>
+        /// <param name="query">The search query.</param>
+        /// <returns>A list of users matching the search criteria.</returns>
+        /// <response code="200">Returns a list of matching users.</response>
         [HttpGet("search")]
         [Authorize(Roles = "Admin")]
         public ActionResult<IEnumerable<UserDto>> SearchUsers([FromQuery] string query)
@@ -34,6 +46,11 @@ namespace project_dotnet7_api.Src.Controllers
             return Ok(valor);
         }
 
+        /// <summary>
+        /// Retrieves all genders.
+        /// </summary>
+        /// <returns>A list of genders.</returns>
+        /// <response code="200">Returns a list of genders.</response>
         [HttpGet("genders")]
         [Authorize]
         public ActionResult<IEnumerable<Gender>> GetGenders()
@@ -42,6 +59,14 @@ namespace project_dotnet7_api.Src.Controllers
             return Ok(valor);
         }
 
+        /// <summary>
+        /// Retrieves all purchases made by a specific user.
+        /// </summary>
+        /// <param name="id">The user ID.</param>
+        /// <returns>A list of purchases made by the user.</returns>
+        /// <response code="200">Returns a list of purchases made by the user.</response>
+        /// <response code="400">If there was an error with the request.</response>
+        /// <response code="401">If the user is not authorized.</response>
         [HttpGet("{id}/purchases")]
         [Authorize(Roles = "Usuario")]
         public ActionResult<IEnumerable<Purchase>> GetPurchasesByUser(int id)
@@ -59,7 +84,12 @@ namespace project_dotnet7_api.Src.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        
+
+        /// <summary>
+        /// Retrieves all purchases.
+        /// </summary>
+        /// <returns>A list of all purchases.</returns>
+        /// <response code="200">Returns a list of all purchases.</response>        
         [HttpGet("purchases")]
         [Authorize(Roles = "Admin")]
         public ActionResult<IEnumerable<Purchase>> GetPurchases()
@@ -68,6 +98,12 @@ namespace project_dotnet7_api.Src.Controllers
             return Ok(valor);
         }
 
+        /// <summary>
+        /// Searches for purchases based on a query string.
+        /// </summary>
+        /// <param name="query">The search query.</param>
+        /// <returns>A list of purchases matching the search criteria.</returns>
+        /// <response code="200">Returns a list of matching purchases.</response>
         [HttpGet("purchases/search")]
         [Authorize(Roles = "Admin")]
         public ActionResult<IEnumerable<Purchase>> SearchPurchases([FromQuery] string query)
@@ -76,6 +112,16 @@ namespace project_dotnet7_api.Src.Controllers
             return Ok(valor);
         }
 
+        /// <summary>
+        /// Edits a user's information.
+        /// </summary>
+        /// <param name="id">The user ID.</param>
+        /// <param name="editUserDto">The updated user details.</param>
+        /// <returns>A confirmation message.</returns>
+        /// <response code="200">Returns a confirmation message.</response>
+        /// <response code="400">If there was an error with the request.</response>
+        /// <response code="401">If the user is not authorized.</response>
+        /// <response code="404">If the user is not found.</response>
         [HttpPut("{id}")]
         [Authorize]
         public ActionResult<string> EditUser(int id, [FromBody] EditUserDto editUserDto)
@@ -97,6 +143,16 @@ namespace project_dotnet7_api.Src.Controllers
             }
         }
 
+        /// <summary>
+        /// Changes a user's password.
+        /// </summary>
+        /// <param name="id">The user ID.</param>
+        /// <param name="changePasswordDto">The new password details.</param>
+        /// <returns>A confirmation message.</returns>
+        /// <response code="200">Returns a confirmation message.</response>
+        /// <response code="400">If there was an error with the request.</response>
+        /// <response code="401">If the user is not authorized.</response>
+        /// <response code="404">If the user is not found.</response>
         [HttpPut("{id}/password")]
         [Authorize]
         public ActionResult<string> ChangeUserPassword(int id, [FromBody] ChangePasswordDto changePasswordDto)
@@ -118,6 +174,15 @@ namespace project_dotnet7_api.Src.Controllers
             }
         }
 
+        /// <summary>
+        /// Changes the state of a user.
+        /// </summary>
+        /// <param name="id">The user ID.</param>
+        /// <param name="newUserState">The new state of the user.</param>
+        /// <returns>A confirmation message.</returns>
+        /// <response code="200">Returns a confirmation message.</response>
+        /// <response code="400">If the state is not valid or there was an error with the request.</response>
+        /// <response code="404">If the user was not found.</response>
         [HttpPut("{id}/state")]
         [Authorize(Roles = "Admin")]
         public ActionResult<string> ChangeUserState(int id, [FromBody] string newUserState)

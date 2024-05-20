@@ -16,6 +16,14 @@ namespace project_dotnet7_api.Src.Controllers
             _purchaseService = purchaseService;
         }
 
+        /// <summary>
+        /// Makes a purchase.
+        /// </summary>
+        /// <param name="purchaseDto">The purchase details.</param>
+        /// <returns>Information about the purchase.</returns>
+        /// <response code="200">Returns information about the purchase.</response>
+        /// <response code="400">If there was an error with the request.</response>
+        /// <response code="401">If the user is not authorized.</response>
         [HttpPost]
         [Authorize(Roles = "Usuario")]
         public async Task<ActionResult<PurchaseInfoDto>> MakePurchase([FromBody] PurchaseDto purchaseDto)

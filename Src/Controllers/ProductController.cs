@@ -17,6 +17,11 @@ namespace project_dotnet7_api.Src.Controllers
             _service = productService;
         }
 
+        /// <summary>
+        /// Retrieves all products.
+        /// </summary>
+        /// <returns>A list of all products.</returns>
+        /// <response code="200">Returns a list of all products.</response>
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult<IEnumerable<ProductDto>> GetProducts()
@@ -25,6 +30,13 @@ namespace project_dotnet7_api.Src.Controllers
             return Ok(valor);
         }
 
+        /// <summary>
+        /// Retrieves available products with pagination.
+        /// </summary>
+        /// <param name="pageNumber">The page number.</param>
+        /// <param name="pageSize">The page size.</param>
+        /// <returns>A list of available products.</returns>
+        /// <response code="200">Returns a list of available products.</response>
         [HttpGet("available/{pageNumber}/{pageSize}")]
         [Authorize(Roles = "Usuario")]
         public ActionResult<IEnumerable<ProductDto>> GetAvailableProducts(int pageNumber, int pageSize)
@@ -33,6 +45,12 @@ namespace project_dotnet7_api.Src.Controllers
             return Ok(valor);
         }
 
+        /// <summary>
+        /// Searches for products based on a query string.
+        /// </summary>
+        /// <param name="query">The search query.</param>
+        /// <returns>A list of products matching the search criteria.</returns>
+        /// <response code="200">Returns a list of matching products.</response>
         [HttpGet("search")]
         [Authorize(Roles = "Admin")]
         public ActionResult<IEnumerable<ProductDto>> SearchProducts([FromQuery] string query)
@@ -41,6 +59,11 @@ namespace project_dotnet7_api.Src.Controllers
             return Ok(valor);
         }
 
+        /// <summary>
+        /// Retrieves all product types.
+        /// </summary>
+        /// <returns>A list of product types.</returns>
+        /// <response code="200">Returns a list of product types.</response>
         [HttpGet("types")]
         [Authorize(Roles = "Admin")]
         public ActionResult<IEnumerable<ProductType>> GetProductTypes()
@@ -49,6 +72,12 @@ namespace project_dotnet7_api.Src.Controllers
             return Ok(valor);
         }
 
+        /// <summary>
+        /// Searches for available products based on a query string.
+        /// </summary>
+        /// <param name="query">The search query.</param>
+        /// <returns>A list of available products matching the search criteria.</returns>
+        /// <response code="200">Returns a list of matching available products.</response>
         [HttpGet("available/search")]
         [Authorize(Roles = "Usuario")]
         public ActionResult<IEnumerable<ProductDto>> SearchAvailableProducts([FromQuery] string query)
@@ -57,6 +86,13 @@ namespace project_dotnet7_api.Src.Controllers
             return Ok(valor);
         }
 
+        /// <summary>
+        /// Adds a new product.
+        /// </summary>
+        /// <param name="addProductDto">The product details.</param>
+        /// <returns>A confirmation message.</returns>
+        /// <response code="200">Returns a confirmation message.</response>
+        /// <response code="400">If there was an error with the request.</response>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult<string> AddProduct([FromForm] AddProductDto addProductDto)
@@ -69,6 +105,15 @@ namespace project_dotnet7_api.Src.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        /// <summary>
+        /// Edits an existing product.
+        /// </summary>
+        /// <param name="id">The product ID.</param>
+        /// <param name="editProductDto">The updated product details.</param>
+        /// <returns>A confirmation message.</returns>
+        /// <response code="200">Returns a confirmation message.</response>
+        /// <response code="400">If there was an error with the request.</response>
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
@@ -83,6 +128,13 @@ namespace project_dotnet7_api.Src.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes a product.
+        /// </summary>
+        /// <param name="id">The product ID.</param>
+        /// <returns>A confirmation message.</returns>
+        /// <response code="200">Returns a confirmation message.</response>
+        /// <response code="400">If there was an error with the request.</response>
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
         public ActionResult<string> DeleteProduct(int id)
