@@ -44,7 +44,7 @@ namespace project_dotnet7_api.Src.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
     }
