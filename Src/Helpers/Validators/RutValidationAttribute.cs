@@ -14,21 +14,34 @@ namespace project_dotnet7_api.Src.Helpers.Validators
                 string rut = (string)value;
 
                 if(rut == "") return false;
-                // Eliminar puntos y guión del rut
-                rut = rut.Replace(".", "").Replace("-", "");
 
-                // Extraer dígito verificador
-                char dv = char.ToUpper(rut[^1]);
-                rut = rut.Substring(0, rut.Length - 1);
+                int rutNumber = int.Parse(rut.Split('-')[0]);
+                char digitoVerificador = rut.Split('-')[1].ToLowerInvariant()[0];
 
-                // Calcular dígito verificador esperado
-                int m = 0, s = 1;
-                for (; rut != ""; rut = rut.Substring(0, rut.Length - 1))
-                    s = (s + int.Parse(rut[rut.Length - 1].ToString()) * (9 - m++ % 6)) % 11;
+                int[] coefficients = { 2, 3, 4, 5, 6, 7 };
+                int sum = 0;
+                int index = 0;
 
-                char calculatedDv = (char)((s > 0 ? s - 1 : 75) + '0');
+                while (rutNumber != 0)
+                {
+                    sum += rutNumber % 10 * coefficients[index];
+                    rutNumber /= 10;
+                    index = (index + 1) % 6;
+                }
 
-                return dv == calculatedDv;
+                int result = 11 - (sum % 11);
+                char verificador;
+                if(result == 10){
+                    verificador = 'k';
+                }
+                else{
+                    verificador = result.ToString()[0];
+                }
+
+                return verificador == digitoVerificador;
+
+                
+               
             }
             return false;
         }
