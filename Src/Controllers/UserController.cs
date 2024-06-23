@@ -69,7 +69,7 @@ namespace project_dotnet7_api.Src.Controllers
         /// <response code="401">If the user is not authorized.</response>
         [HttpGet("{id}/purchases")]
         [Authorize(Roles = "Usuario")]
-        public ActionResult<IEnumerable<Purchase>> GetPurchasesByUser(int id)
+        public async Task<ActionResult<IEnumerable<Purchase>>> GetPurchasesByUser(int id)
         {
             try{
                 var idClaim = User.Claims.FirstOrDefault(claim => claim.Type == "Id");
@@ -77,7 +77,7 @@ namespace project_dotnet7_api.Src.Controllers
                     return Unauthorized("Las IDs no coinciden.");
                 }
 
-                var valor = _purchaseService.GetPurchasesByUser(id).Result;
+                var valor = await _purchaseService.GetPurchasesByUser(id);
                 return Ok(valor);
             }
             catch(Exception ex){
@@ -124,7 +124,7 @@ namespace project_dotnet7_api.Src.Controllers
         /// <response code="404">If the user is not found.</response>
         [HttpPut("{id}")]
         [Authorize]
-        public ActionResult<string> EditUser(int id, [FromBody] EditUserDto editUserDto)
+        public async Task<ActionResult<string>> EditUser(int id, [FromBody] EditUserDto editUserDto)
         {
             try{
                 var idClaim = User.Claims.FirstOrDefault(claim => claim.Type == "Id");
@@ -132,7 +132,7 @@ namespace project_dotnet7_api.Src.Controllers
                     return Unauthorized("Las IDs no coinciden.");
                 }
 
-                var valor = _service.EditUserInfo(id, editUserDto).Result;
+                var valor = await _service.EditUserInfo(id, editUserDto);
                 if(!valor){
                     return NotFound("Usuario no encontrado");
                 }
@@ -155,7 +155,7 @@ namespace project_dotnet7_api.Src.Controllers
         /// <response code="404">If the user is not found.</response>
         [HttpPut("{id}/password")]
         [Authorize]
-        public ActionResult<string> ChangeUserPassword(int id, [FromBody] ChangePasswordDto changePasswordDto)
+        public async Task<ActionResult<string>> ChangeUserPassword(int id, [FromBody] ChangePasswordDto changePasswordDto)
         {
             try{
                 var idClaim = User.Claims.FirstOrDefault(claim => claim.Type == "Id");
@@ -163,7 +163,7 @@ namespace project_dotnet7_api.Src.Controllers
                     return Unauthorized("Las IDs no coinciden.");
                 }
 
-                var valor = _service.ChangeUserPassword(id, changePasswordDto).Result;
+                var valor = await _service.ChangeUserPassword(id, changePasswordDto);
                 if(!valor){
                     return NotFound("Usuario no encontrado");
                 }
@@ -185,11 +185,11 @@ namespace project_dotnet7_api.Src.Controllers
         /// <response code="404">If the user was not found.</response>
         [HttpPut("{id}/state")]
         [Authorize(Roles = "Admin")]
-        public ActionResult<string> ChangeUserState(int id, [FromBody] string newUserState)
+        public async Task<ActionResult<string>> ChangeUserState(int id, [FromBody] string newUserState)
         {
             try{
                 bool newState = bool.Parse(newUserState);
-                var valor = _service.ChangeUserState(id, newState).Result;
+                var valor = await _service.ChangeUserState(id, newState);
                 if(!valor){
                     return NotFound("Usuario no encontrado");
                 }

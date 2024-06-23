@@ -95,10 +95,10 @@ namespace project_dotnet7_api.Src.Controllers
         /// <response code="400">If there was an error with the request.</response>
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public ActionResult<string> AddProduct([FromForm] AddProductDto addProductDto)
+        public async Task<ActionResult<string>> AddProduct([FromForm] AddProductDto addProductDto)
         {
             try{
-                var valor = _service.AddProduct(addProductDto).Result;
+                var valor = await _service.AddProduct(addProductDto);
                 return Ok("Producto agregado con éxito.");
             }
             catch(Exception ex){
@@ -117,10 +117,10 @@ namespace project_dotnet7_api.Src.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public ActionResult<string> EditProduct(int id, [FromForm] EditProductDto editProductDto)
+        public async Task<ActionResult<string>> EditProduct(int id, [FromForm] EditProductDto editProductDto)
         {
             try{
-                var valor = _service.EditProduct(id, editProductDto).Result;
+                var valor = await _service.EditProduct(id, editProductDto);
                 return Ok("Producto editado con éxito.");
             }
             catch(Exception ex){
@@ -137,10 +137,10 @@ namespace project_dotnet7_api.Src.Controllers
         /// <response code="400">If there was an error with the request.</response>
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public ActionResult<string> DeleteProduct(int id)
+        public async Task<ActionResult<string>> DeleteProduct(int id)
         {
             try{
-                var valor = _service.DeleteProduct(id).Result;
+                var valor = await _service.DeleteProduct(id);
                 return Ok("Producto eliminado con éxito.");
             }
             catch(Exception ex){

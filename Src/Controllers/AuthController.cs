@@ -24,7 +24,7 @@ namespace project_dotnet7_api.Src.Controllers
         /// <response code="200">Returns the confirmation message.</response>
         /// <response code="400">If there was an error with the request.</response>
         [HttpPost("register")]
-        public async Task<ActionResult<string>> Register(RegisterUserDto registerUserDto)
+        public async Task<ActionResult<LoggedUserDto>> Register(RegisterUserDto registerUserDto)
         {
             try{
                 var response = await _authService.RegisterUser(registerUserDto);
@@ -46,7 +46,6 @@ namespace project_dotnet7_api.Src.Controllers
         public async Task<ActionResult<LoggedUserDto>> Login(LoginUserDto loginUserDto)
         {
             try{
-                Thread.Sleep(500);
                 var response = await _authService.Login(loginUserDto);
                 return Ok(response);
             }

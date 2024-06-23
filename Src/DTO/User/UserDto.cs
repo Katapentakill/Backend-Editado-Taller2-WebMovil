@@ -20,6 +20,8 @@ namespace project_dotnet7_api.Src.DTO.User
 
         public bool IsActive { get; set; }
 
-        public Gender Gender { get; set;} = null!;        
+        public Gender Gender { get; set;} = null!;
+
+        public Role Role { get; set;} = null!;        
     }
 }

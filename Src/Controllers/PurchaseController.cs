@@ -31,12 +31,7 @@ namespace project_dotnet7_api.Src.Controllers
             try
             {
                 var idClaim = User.Claims.FirstOrDefault(claim => claim.Type == "Id");
-                if (idClaim == null)
-                {
-                    return Unauthorized("Las IDs no coinciden.");
-                }
-                if (int.Parse(idClaim.Value) != int.Parse(purchaseDto.UserId))
-                {
+                if(idClaim != null && int.Parse(idClaim.Value) != int.Parse(purchaseDto.UserId)){
                     return Unauthorized("Las IDs no coinciden.");
                 }
                 var result = await _purchaseService.MakePurchase(purchaseDto);
