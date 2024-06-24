@@ -183,9 +183,9 @@ namespace project_dotnet7_api.Src.Controllers
         /// <response code="200">Returns a confirmation message.</response>
         /// <response code="400">If the state is not valid or there was an error with the request.</response>
         /// <response code="404">If the user was not found.</response>
-        [HttpPut("{id}/state")]
+        [HttpPut("{id}/state/{newUserState}")]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<string>> ChangeUserState(int id, [FromBody] string newUserState)
+        public async Task<ActionResult<string>> ChangeUserState(int id, string newUserState)
         {
             try{
                 bool newState = bool.Parse(newUserState);

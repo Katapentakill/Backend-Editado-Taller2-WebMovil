@@ -23,7 +23,7 @@ namespace project_dotnet7_api.Src.Controllers
         /// <returns>A list of all products.</returns>
         /// <response code="200">Returns a list of all products.</response>
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Usuario")]
         public ActionResult<IEnumerable<ProductDto>> GetProducts()
         {
             var valor = _service.GetProducts().Result;
@@ -52,7 +52,7 @@ namespace project_dotnet7_api.Src.Controllers
         /// <returns>A list of products matching the search criteria.</returns>
         /// <response code="200">Returns a list of matching products.</response>
         [HttpGet("search")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Usuario")]
         public ActionResult<IEnumerable<ProductDto>> SearchProducts([FromQuery] string query)
         {
             var valor = _service.SearchProducts(query).Result;
