@@ -1,6 +1,6 @@
 # Backend Taller de Introducción al Desarrollo Web/Móvil
 
-### Por Darío Contreras Abaca
+
 ****
 ## INSTALACIÓN:
 Debes instalar [Visual Studio Code](https://code.visualstudio.com/) y el [SDK .NET7](https://dotnet.microsoft.com/es-es/download/dotnet/7.0).
