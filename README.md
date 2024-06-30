@@ -12,7 +12,7 @@ Ir a Terminal -> New Terminal para abrir una nueva terminal.
 Ejecutar los siguientes comandos en orden: 
 
 ```bash
-git clone https://github.com/IDWM/project-dotnet7-api
+git clone https://github.com/Katapentakill/Backend-Editado-Taller2-WebMovil.git
 ```
 
 ```bash
