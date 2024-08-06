@@ -5,7 +5,6 @@ services:
     env: docker
     buildCommand: dotnet build
     startCommand: dotnet run --project project-dotnet7-api.csproj
-    # Si necesitas configurar variables de entorno, puedes hacerlo aquí:
     envVars:
       - key: CLOUDINARY_CLOUD_NAME
         value: dk4kv9vsa
