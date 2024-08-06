@@ -1,0 +1,15 @@
+version: 1
+services:
+  - type: web
+    name: backend-dotnet
+    env: docker
+    buildCommand: dotnet build
+    startCommand: dotnet run --project project-dotnet7-api.csproj
+    # Si necesitas configurar variables de entorno, puedes hacerlo aquí:
+    envVars:
+      - key: CLOUDINARY_CLOUD_NAME
+        value: dk4kv9vsa
+      - key: CLOUDINARY_API_KEY
+        value: 348476928556512
+      - key: CLOUDINARY_API_SECRET
+        value: LSOgJ9kFPSaAbfwdk8gGrG9zG1U
