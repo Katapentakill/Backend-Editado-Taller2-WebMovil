@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "project-dotnet7-api.csproj",
+        "use": "@vercel/dotnet"
+      }
+    ]
+  }
+  
