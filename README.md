@@ -1,6 +1,6 @@
 # Backend Taller de Introducción al Desarrollo Web/Móvil
 
-### Por Darío Contreras Abaca
+
 ****
 ## INSTALACIÓN:
 Debes instalar [Visual Studio Code](https://code.visualstudio.com/) y el [SDK .NET7](https://dotnet.microsoft.com/es-es/download/dotnet/7.0).
@@ -12,7 +12,7 @@ Ir a Terminal -> New Terminal para abrir una nueva terminal.
 Ejecutar los siguientes comandos en orden: 
 
 ```bash
-git clone https://github.com/IDWM/project-dotnet7-api
+git clone https://github.com/Katapentakill/Backend-Editado-Taller2-WebMovil.git
 ```
 
 ```bash
